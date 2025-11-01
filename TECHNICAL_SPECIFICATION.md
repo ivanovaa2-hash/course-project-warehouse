@@ -66,8 +66,6 @@
 - `Id` (int, PK) — уникальный идентификатор товара
 - `Name` (string) — наименование товара
 - `Category` (string) — категория товара
-- `PurchasePrice` (decimal) — закупочная цена
-- `SalePrice` (decimal) — цена продажи
 - `Quantity` (int) — текущее количество на складе
 - `MinStock` (int) — минимальное количество для уведомления
 - `CreatedAt` (DateTime) — дата обновления
@@ -82,6 +80,7 @@
 - `ProductId` (int, FK → Products.Id) — товар
 - `SupplierId` (int, FK → Suppliers.Id) — поставщик
 - `Quantity` (int) — количество поставленного товара
+- `UnitPrice` (decimal) — цена за единицу
 - `ShipmentDate` (DateTime) — дата поставки
 - `TotalCost` (decimal) — общая стоимость партии
 
@@ -92,6 +91,7 @@
 - `Id` (int, PK)
 - `ProductId` (int, FK → Products.Id)
 - `Quantity` (int) — количество списанного товара
+- `UnitSalePrice` (decimal) - цена за единицу
 - `Reason` (string) — причина списания
 - `SaleDate` (DateTime) — дата
 
@@ -109,7 +109,6 @@
 
 **Поля:**
 - `Id` (int, PK)
-- `SupplierId` (int, FK → Suppliers.Id)
 - `ShipmentId` (int, FK → Shipments.Id)
 - `Amount` (decimal) — сумма оплаты
 - `PaymentDate` (DateTime) — дата платежа
@@ -128,7 +127,7 @@
 - Button — "Добавить товар"
 - Button — "Редактировать"
 - Button — "Удалить"
-- Button — "Поставки"
+- Button — "Добавить поставку"
 - Button — "Отчёты"
 - Button — "Оплаты"
 
@@ -159,23 +158,38 @@
 **Назначение:** Ввод новых поставок и обновление остатков.
 
 **Элементы управления:**
-- ComboBox — товар
-- ComboBox — поставщик
-- NumericUpDown — количество
-- DatePicker — дата поставки
-- Button — "Сохранить"
+**Секция заголовка накладной**
+- ComboBox - выбор поставщика из списка
+- DatePicker - дата поступления
+- TextBox - Номер документа
+  
+**Секция таблицы товаров**
+- ComboBox - Выбор товара из каталога
+- NumericUpDown - количество едениц
+- TextBox - цена за единицу товара
+- TextBox (read-only) - расчет кол-во х цена
+- Button "Удалить"
+
+**Панель управления таблицей**
+- Button  "добавить строку"
+
+**Кнопки действий**
+- Button "Сохранить"
+- Button "Отмена"
 
 **Действия:**
 - "Сохранить" — сохранение поставки и обновление остатков
+- "Отмена" - вернуться к `MainWindow`
 
 ### Форма 4: ReportWindow
 **Назначение:** Просмотр статистики остатков и продаж.
 
 **Элементы управления:**
-- ComboBox — выбор периода
-- DataGrid — таблица остатков
-- Chart — график продаж
-- Button — "Закрыть"
+- ComboBox - выбор отчёта
+  - Отчёт по остаткам
+  - Отчёт о продажах (Детализация продаж за период с возможностью группировки по товару/категории. Показывает количество проданного и выручку)
+  - Отчёт о прибыли ((SUM(Sales.UnitSalePrice * Sales.Quantity)) - (SUM(Shipments.UnitPrice * Sales.Quantity)) за выбранный период. Показывает валовую прибыль по каждому товару)
+  - Отчёт по движению товара (Полная история прихода и расхода по конкретному товару за период)
 
 **Действия:**
 - "Закрыть" — возврат к `MainWindow`
@@ -205,7 +219,7 @@
 Из `MainWindow`:
 - "Добавить товар" → `ProductEditWindow`
 - "Редактировать" → `ProductEditWindow`
-- "Поставки" → `ShipmentWindow`
+- "Добавить поставку" → `ShipmentWindow`
 - "Отчёты" → `ReportWindow`
 - "Оплаты" → `PaymentWindow`
 
