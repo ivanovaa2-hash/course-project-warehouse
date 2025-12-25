@@ -1,0 +1,113 @@
+﻿<Window x:Class="course_project_warehouse.UI.Windows.ProductEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление/Редактирование товара" 
+        Height="550" Width="500"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+                   Text="Добавление/Редактирование товара"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Форма товара -->
+        <GroupBox Grid.Row="1" Header="Данные товара">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Наименование:" Grid.Row="0" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" 
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Категория:" Grid.Row="1" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <ComboBox x:Name="CategoryComboBox" Grid.Row="1" Grid.Column="1" 
+                          Height="30" Margin="0,0,0,10">
+                    <ComboBoxItem>Процессоры</ComboBoxItem>
+                    <ComboBoxItem>Видеокарты</ComboBoxItem>
+                    <ComboBoxItem>Оперативная память</ComboBoxItem>
+                    <ComboBoxItem>Материнские платы</ComboBoxItem>
+                    <ComboBoxItem>Жёсткие диски / SSD</ComboBoxItem>
+                    <ComboBoxItem>Корпуса</ComboBoxItem>
+                    <ComboBoxItem>Блоки питания</ComboBoxItem>
+                    <ComboBoxItem>Кулеры / системы охлаждения</ComboBoxItem>
+                    <ComboBoxItem>Другое</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="Производитель:" Grid.Row="2" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="ManufacturerTextBox" Grid.Row="2" Grid.Column="1" 
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Модель/Артикул:" Grid.Row="3" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="ModelTextBox" Grid.Row="3" Grid.Column="1" 
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Количество:" Grid.Row="4" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="QuantityTextBox" Grid.Row="4" Grid.Column="1" 
+                         Text="0"
+                         PreviewTextInput="NumberValidationTextBox"
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Мин. запас:" Grid.Row="5" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="MinStockTextBox" Grid.Row="5" Grid.Column="1" 
+                         Text="0"
+                         PreviewTextInput="NumberValidationTextBox"
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Цена закупки:" Grid.Row="6" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="PurchasePriceTextBox" Grid.Row="6" Grid.Column="1" 
+                         Text="0"
+                         PreviewTextInput="DecimalValidationTextBox"
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Цена продажи:" Grid.Row="7" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="SalePriceTextBox" Grid.Row="7" Grid.Column="1" 
+                         Text="0"
+                         PreviewTextInput="DecimalValidationTextBox"
+                         Height="30" Margin="0,0,0,10"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Кнопки действий -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button x:Name="SaveButton" Content="Сохранить"
+                    Click="SaveButton_Click"
+                    Width="120" Height="35" Margin="10"/>
+            <Button Content="Отмена"
+                    Click="CancelButton_Click"
+                    Width="120" Height="35" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

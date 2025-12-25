@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RootNamespace>course_project_warehouse.UI</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\course-project-warehouse.Data.InMemory\course-project-warehouse.Data.InMemory.csproj" />
+    <ProjectReference Include="..\course-project-warehouse.Data.Interfaces\course-project-warehouse.Data.Interfaces.csproj" />
+    <ProjectReference Include="..\course-project-warehouse.Data.SqlServer\course-project-warehouse.Data.SqlServer.csproj" />
+    <ProjectReference Include="..\course-project-warehouse.Domain\course-project-warehouse.Domain.csproj" />
+    <ProjectReference Include="..\course-project-warehouse.Services\course-project-warehouse.Services.csproj" />
+  </ItemGroup>
+
+</Project>

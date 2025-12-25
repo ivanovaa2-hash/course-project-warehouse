@@ -1,0 +1,99 @@
+﻿<Window x:Class="course_project_warehouse.UI.Windows.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Оплата поставки"
+        Height="500" Width="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+                   Text="Оплата поставки"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Форма оплаты -->
+        <GroupBox Grid.Row="1" Header="Данные оплаты">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Поставщик:" Grid.Row="0" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <ComboBox x:Name="SupplierComboBox" Grid.Row="0" Grid.Column="1" 
+                          DisplayMemberPath="Name" SelectedValuePath="Id"
+                          SelectionChanged="SupplierComboBox_SelectionChanged"
+                          Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Поставка:" Grid.Row="1" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <ComboBox x:Name="ShipmentComboBox" Grid.Row="1" Grid.Column="1" 
+                          DisplayMemberPath="DisplayName" SelectedValuePath="Id"
+                          Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Сумма поставки:" Grid.Row="2" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="ShipmentAmountTextBox" Grid.Row="2" Grid.Column="1" 
+                         IsReadOnly="True" Background="LightGray"
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Сумма оплаты:" Grid.Row="3" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="PaymentAmountTextBox" Grid.Row="3" Grid.Column="1" 
+                         Height="30" Margin="0,0,0,10" TextChanged="PaymentAmountTextBox_TextChanged"
+                         PreviewTextInput="DecimalValidationTextBox"/>
+
+                <TextBlock Text="Остаток к оплате:" Grid.Row="4" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <TextBox x:Name="RemainingAmountTextBox" Grid.Row="4" Grid.Column="1" 
+                         IsReadOnly="True" Background="LightGray"
+                         Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Способ оплаты:" Grid.Row="5" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <ComboBox x:Name="PaymentMethodComboBox" Grid.Row="5" Grid.Column="1" 
+                          Height="30" Margin="0,0,0,10">
+                    <ComboBoxItem>Наличные</ComboBoxItem>
+                    <ComboBoxItem>Банковский перевод</ComboBoxItem>
+                    <ComboBoxItem>Карта</ComboBoxItem>
+                    <ComboBoxItem>Электронный кошелек</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="Дата оплаты:" Grid.Row="6" Grid.Column="0" 
+                           VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <DatePicker x:Name="PaymentDatePicker" Grid.Row="6" Grid.Column="1" 
+                            Height="30"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Кнопки действий -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button Content="Оплатить"
+                    Click="PayButton_Click"
+                    Width="120" Height="35" Margin="10"/>
+            <Button Content="Отмена"
+                    Click="CancelButton_Click"
+                    Width="120" Height="35" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

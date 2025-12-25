@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>course_project_warehouse.Services</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\course-project-warehouse.Data.Interfaces\course-project-warehouse.Data.Interfaces.csproj" />
+    <ProjectReference Include="..\course-project-warehouse.Domain\course-project-warehouse.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

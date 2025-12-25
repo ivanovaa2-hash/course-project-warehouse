@@ -1,0 +1,83 @@
+﻿<Window x:Class="course_project_warehouse.UI.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        Title="Отчёты и статистика"
+        Height="850" Width="1300"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0"
+                   Text="Отчёты и аналитика склада"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+        <!-- Фильтры -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <TextBlock Text="Период с:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <DatePicker x:Name="StartDatePicker" Width="140"/>
+
+            <TextBlock Text="по:" VerticalAlignment="Center" Margin="30,0,10,0"/>
+            <DatePicker x:Name="EndDatePicker" Width="140"/>
+
+            <Button Content="Применить фильтр"
+                    Click="ApplyFilter_Click"
+                    Width="140" Height="32"
+                    Margin="40,0,10,0"/>
+
+            <Button Content="Сбросить"
+                    Click="ResetFilter_Click"
+                    Width="110" Height="32"/>
+        </StackPanel>
+
+        <!-- Вкладки с графиками -->
+        <TabControl Grid.Row="2">
+            <TabItem Header="Остатки товаров">
+                <oxy:PlotView x:Name="StockPlot" Margin="10"/>
+            </TabItem>
+
+            <TabItem Header="Продажи по месяцам">
+                <oxy:PlotView x:Name="SalesPlot" Margin="10"/>
+            </TabItem>
+
+            <TabItem Header="Прибыль по месяцам">
+                <oxy:PlotView x:Name="ProfitPlot" Margin="10"/>
+            </TabItem>
+
+            <TabItem Header="Движение товара">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Товар:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <ComboBox x:Name="ProductComboBox" Width="400" DisplayMemberPath="ProductName"/>
+                        <Button Content="Обновить" Click="RefreshMovement_Click" Margin="20,0,0,0"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="MovementGrid" Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=dd.MM.yyyy}" Width="*"/>
+                            <DataGridTextColumn Header="Тип операции" Binding="{Binding Type}" Width="*"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat=C2}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
