@@ -74,7 +74,7 @@
                   BorderBrush="#DDD"
                   BorderThickness="1"
                   Margin="0,0,0,20"
-                  MouseDoubleClick="ProductsDataGrid_MouseDoubleClick">
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="80" FontWeight="SemiBold"/>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="220"/>
@@ -90,10 +90,7 @@
 
         <!-- === Панель кнопок === -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button Content="Добавить товар" Click="AddProduct_Click" Width="160" Height="45" Margin="10"/>
-            <Button Content="Редактировать" Click="EditProduct_Click" Width="140" Height="45" Margin="10"/>
             <Button Content="Удалить" Click="DeleteProduct_Click" Width="130" Height="45" Margin="10"/>
-            <Button Content="Добавить поставку" Click="AddShipment_Click" Width="170" Height="45" Margin="10"/>
             <Button Content="Отчёты" Click="ReportsButton_Click" Width="130" Height="45" Margin="10"/>
             <Button Content="Оплаты" Click="PaymentsButton_Click" Width="130" Height="45" Margin="10"/>
         </StackPanel>

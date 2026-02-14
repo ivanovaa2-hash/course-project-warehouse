@@ -169,7 +169,7 @@ namespace course_project_warehouse.UI
         //{
         //    try
         //    {
-        //        var editWindow = new ProductEditWindow(IProductRepository _productRepository);
+        //        var editWindow = new ProductEditWindow( _productRepository);
         //        if (editWindow.ShowDialog() == true)
         //        {
         //            LoadProducts();

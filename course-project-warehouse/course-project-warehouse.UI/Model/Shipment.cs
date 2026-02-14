@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace course_project_warehouse.Domain.Models;
+namespace course_project_warehouse.UI.Model;
 
 public partial class Shipment
 {

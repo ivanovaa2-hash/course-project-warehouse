@@ -13,13 +13,13 @@ namespace course_project_warehouse.UI.Windows
         private readonly Product _product;
         private readonly bool _isEditMode;
 
-        public ProductEditWindow(ProductRepository productRepository, Product product = null)
+        public ProductEditWindow(ProductRepository productRepository)
         {
             InitializeComponent();
 
             _productRepository = productRepository;
-            _product = product;
-            _isEditMode = product != null;
+            //_product = product;
+            //_isEditMode = product != null;
 
             // Установка заголовка окна
             this.Title = _isEditMode ? "Редактирование товара" : "Добавление товара";
